@@ -1,0 +1,16 @@
+<app-loading></app-loading>
+
+<div class="row main-container mx-auto" *ngIf="!loader">
+  <div class="col-xl-9">
+    <div class="row mx-auto my-5 card-row">
+      <div *ngFor="let product of productsList" class="col-xl-4 col-md-6 mb-2">
+        <app-product-card [cardProduct]="product"></app-product-card>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3">
+    <app-wish-list></app-wish-list>
+  </div>
+</div>
+
+

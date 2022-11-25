@@ -1,0 +1,45 @@
+
+<div class="card mb-3 p-1 pb-2 card-container">
+  <img [src]="cardProduct.image" class="card-img-top p-2" alt="product-image" />
+  <div class="card-body">
+    <a
+      [routerLink]="['/product-details', cardProduct.id]"
+      class="card-title text-decoration-none fw-bold productName"
+      >{{ cardProduct.name }}</a
+    >
+    <div class="card-text d-flex justify-content-between mt-3 mb-2">
+      <p class="fs-14">{{ cardProduct.createdAt | date: "MMM y" }}</p>
+      <p class="fs-14">{{ cardProduct.price | currency: "":" EGP":"":"fr" }}</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div>
+        <div *ngIf="productsCount[cardProduct.id] > 0; then inS; else outS"></div>
+        <ng-template #inS>
+          <p class="text-success fs-14">In Stock</p>
+          <button class="btn btn-primary fs-14" (click)="addProduct()">
+            Add to cart
+          </button>
+        </ng-template>
+        <ng-template #outS>
+          <p class="text-danger fs-14">Out of Stock</p>
+          <button
+            class="out-btn opacity-75 fs-14"
+            style="pointer-events: none"
+            (click)="addProduct()"
+          >
+            Add to cart
+          </button>
+        </ng-template>
+      </div>
+      <div>
+        <div *ngIf="wishFlag[cardProduct.id] ; then solid; else frame"></div>
+        <ng-template #solid>
+          <button class="p-1 mx-2 bg-light border-0" (click)="updateWishList(this.cardProduct.id)"><i-bs name="heart-fill" class="text-danger"></i-bs></button>
+        </ng-template>
+        <ng-template #frame>
+          <button class="p-1 mx-2 bg-light border-0" (click)="updateWishList(this.cardProduct.id)"><i-bs name="heart" class="text-danger"></i-bs></button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

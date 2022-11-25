@@ -1,0 +1,195 @@
+<div class="container border border-info rounded p-5 w-75 my-5">
+  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+    <!-- --------------- NAME --------------- -->
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Name"
+        aria-describedby="nameHelp"
+        formControlName="Name"
+      />
+    </div>
+    <div
+      *ngIf="
+        (formControls['Name'].touched && !formControls['Name'].valid) ||
+        (submitFlag && !formControls['Name'].valid)
+      "
+    >
+      <div
+        id="nameHelp"
+        *ngIf="
+          formControls['Name'].errors && formControls['Name'].errors['required']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This field is required
+      </div>
+    </div>
+    <!-- --------------- EMAIL --------------- -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="nameHelp"
+        formControlName="email"
+      />
+    </div>
+    <div
+      *ngIf="
+        (formControls['email'].touched && !formControls['email'].valid) ||
+        (submitFlag && !formControls['email'].valid)
+      "
+    >
+      <div
+        *ngIf="
+          formControls['email'].errors &&
+          formControls['email'].errors['pattern']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This email is not valid
+      </div>
+      <div
+        id="nameHelp"
+        *ngIf="
+          formControls['email'].errors &&
+          formControls['email'].errors['required']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This field is required
+      </div>
+    </div>
+    <!-- --------------- USERNAME --------------- -->
+    <div class="mb-3">
+      <label for="username" class="form-label">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        aria-describedby="nameHelp"
+        formControlName="username"
+      />
+    </div>
+    <div
+      *ngIf="
+        (formControls['username'].touched && !formControls['username'].valid) ||
+        (submitFlag && !formControls['username'].valid)
+      "
+    >
+      <div
+        id="nameHelp"
+        *ngIf="
+          formControls['username'].errors &&
+          formControls['username'].errors['required']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This field is required
+      </div>
+      <div
+        *ngIf="
+          formControls['username'].errors &&
+          formControls['username'].errors['pattern']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        User name is not valid.
+      </div>
+    </div>
+    <!-- --------------- PASSWORD --------------- -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        aria-describedby="nameHelp"
+        formControlName="password"
+      />
+    </div>
+    <div
+      *ngIf="
+        (formControls['password'].touched && !formControls['password'].valid) ||
+        (submitFlag && !formControls['password'].valid)
+      "
+    >
+      <div
+        *ngIf="
+          formControls['password'].errors &&
+          formControls['password'].errors['pattern']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        User password is not valid.
+      </div>
+      <div
+        id="nameHelp"
+        *ngIf="
+          formControls['password'].errors &&
+          formControls['password'].errors['required']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This field is required
+      </div>
+    </div>
+    <!-- --------------- CONFIRM PASSWORD --------------- -->
+    <div class="mb-3">
+      <label for="conPassword" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="conPassword"
+        aria-describedby="nameHelp"
+        formControlName="conPassword"
+      />
+    </div>
+    <div
+      *ngIf="
+        (formControls['conPassword'].touched &&
+          !formControls['conPassword'].valid) ||
+        (submitFlag && !formControls['conPassword'].valid)
+      "
+    >
+      <div
+        *ngIf="
+          formControls['conPassword'].errors &&
+          formControls['conPassword'].errors['pattern']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        User password is not valid.
+      </div>
+      <div
+        id="nameHelp"
+        *ngIf="
+          formControls['conPassword'].errors &&
+          formControls['conPassword'].errors['required']
+        "
+        class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+      >
+        This field is required
+      </div>
+    </div>
+    <!-- --------------- SUBMIT --------------- -->
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+  </form>
+  <!-- --------------- LOGIN SWITCH --------------- -->
+  <div class="my-4">
+    <p class="text-center">
+      Already have account!
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

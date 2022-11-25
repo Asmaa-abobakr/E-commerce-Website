@@ -1,0 +1,63 @@
+/* General Style:  */
+img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+h3{
+    font-size: 1.25rem;
+}
+h3 span{
+    color: rgb(117, 117, 117);
+}
+
+/* Start product wrapper style */
+.product-container{
+    width: 60%;
+    margin: 30px auto 50px;
+    border: 2px solid rgb(117, 117, 117);
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 5px 5px rgb(160, 160, 160);
+}
+.product-container h2{
+    font-size: 16px;
+}
+.product-container p{
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 2px 7px;
+}
+.product-container .quantity-container{
+    width: 55%;
+    border: 0.5px solid rgb(117, 117, 117);
+    border-radius: 6px;
+    padding: 4px 8px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.product-container .sign-btn{
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    border: none;
+    margin: 3px 5px;
+    font-size: 16px;
+    color: white;
+}
+/* End product wrapper style */
+
+/* Start remove button style */
+.remove-btn{
+    padding: 7px 15px;
+    color: white;
+    background-color: #0d6efd;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.remove-btn:hover{
+    background-color: rgb(117, 117, 117);
+}
+/* End remove button style */

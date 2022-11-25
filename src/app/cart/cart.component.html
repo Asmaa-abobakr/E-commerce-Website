@@ -1,0 +1,60 @@
+<div *ngIf="totalQuantity == 0; then empty; else notEmpty"></div>
+<!-- Empty Cart Content -->
+<ng-template #empty>
+  <div class="container my-5 py-5">
+    <h1 class="text-center">Empty Cart! 🤷‍♂️</h1>
+  </div>
+</ng-template>
+
+<!-- Not-Empty Cart Content -->
+<ng-template #notEmpty>
+  <div *ngFor="let pro of productsArray">
+    <div class="product-container row align-items-center p-2">
+      <div class="col-md-2">
+        <img [src]="pro.image" alt="product-image" />
+        <!-- Product-image -->
+      </div>
+      <div class="col-md-4">
+        <h2 class="mb-md-4">{{ pro.name }}</h2>
+        <!-- Product-name -->
+        <div class="quantity-container d-flex justify-content-around">
+          <button
+            class="sign-btn d-flex justify-content-center align-items-center pt-0 fs-5"
+            (click)="decreaseQuantity(pro.id)"
+          >
+            -
+          </button>
+          <p>{{ productsQuantity[pro.id] }}</p>
+          <!-- Product-quantity -->
+          <button
+            class="sign-btn d-flex justify-content-center align-items-center pt-0"
+            (click)="increaseQuantity(pro.id)"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <p>
+          Price:
+          {{
+            +pro.price * productsQuantity[pro.id] | currency: "":" EGP":"":"fr"
+          }}
+        </p>
+        <!-- Product-price -->
+      </div>
+      <div class="col-md-2">
+        <button class="remove-btn" (click)="removeProduct(pro.id)">
+          Remove
+        </button>
+        <!-- Remove-button -->
+      </div>
+    </div>
+  </div>
+  <div class="container w-25 py-5 me-0">
+    <h3>
+      <!-- Total-price -->
+      Total Price: <span>{{ totalPrice | currency: "":" EGP":"":"fr" }}</span>
+    </h3>
+  </div>
+</ng-template>

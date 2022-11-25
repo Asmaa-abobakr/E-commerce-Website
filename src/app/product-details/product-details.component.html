@@ -1,0 +1,42 @@
+<app-loading></app-loading>
+
+<div *ngIf="!loader">
+  <div class="container my-5 p-5 row">
+    <div class="col-md-4">
+      <div class="img-wrapper">
+        <img [src]="productDetails.image" alt="product-image" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>{{ productDetails.name }}</h3>
+      <p>{{ productDetails.description }}</p>
+      <p>{{ productDetails.createdAt | date: "MMM y" }}</p>
+      <p>{{ productDetails.price | currency: "":" EGP":"":"fr" }}</p>
+      <div
+        *ngIf="productsCount[productDetails.id] > 0; then inS; else outS"
+      ></div>
+      <ng-template #inS>
+        <p class="text-success">In Stock</p>
+        <button class="btn btn-primary" (click)="addProduct()">
+          Add to cart
+        </button>
+      </ng-template>
+      <ng-template #outS>
+        <p class="text-danger">Out of Stock</p>
+        <button
+          class="out-btn opacity-75"
+          style="pointer-events: none"
+          (click)="addProduct()"
+        >
+          Add to cart
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+  <a
+    class="back-btn text-decoration-none text-white border border-info rounded py-1 px-3 my-3 fs-4"
+    routerLink="/"
+    >Go To Home</a
+  >
+</div>

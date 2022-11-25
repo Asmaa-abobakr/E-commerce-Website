@@ -1,0 +1,88 @@
+<div class="container border border-info rounded p-5 w-75 my-5">
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="handleSubmitForm(loginForm)"
+    class="container"
+  >
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="nameHelp"
+        #email="ngModel"
+        name="email"
+        ngModel
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
+      <div
+        *ngIf="
+          (email.touched && !email.valid) ||
+          (loginForm.submitted && !email.valid)
+        "
+      >
+        <div
+          id="nameHelp"
+          *ngIf="email.errors && email.errors['required']"
+          class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+        >
+          This field is required
+        </div>
+        <div
+          id="nameHelp"
+          *ngIf="email.errors && email.errors['pattern']"
+          class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+        >
+          <!-- at start errors value is null -->
+          This email is not valid
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        #password="ngModel"
+        ngModel
+        name="password"
+        class="form-control"
+        id="password"
+        required
+        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*@%$#]).{8,}$"
+      />
+      <div
+        *ngIf="
+          (password.touched && !password.valid) ||
+          (loginForm.submitted && !password.valid)
+        "
+      >
+        <div
+          *ngIf="password.errors && password.errors['required']"
+          class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+        >
+          This field is required
+        </div>
+        <div
+          id="nameHelp"
+          *ngIf="password.errors && password.errors['pattern']"
+          class="form-text text-danger bg-danger bg-opacity-10 my-2 px-2 py-1 border border-danger rounded"
+        >
+          <!-- at start errors value is null -->
+          This password is not valid
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+      Login
+    </button>
+  </form>
+  <div class="my-4">
+    <p class="text-center">
+      Don’t have account ? <a routerLink="/register">Register</a>
+    </p>
+  </div>
+</div>
